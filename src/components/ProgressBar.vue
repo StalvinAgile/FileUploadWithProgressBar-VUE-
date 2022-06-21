@@ -1,7 +1,7 @@
 <template>
   <div class="progress">
     <div
-      class="progress-bar progress-bar-info progress-bar-striped"
+      class="progress-bar progress-bar-success"
       role="progressbar"
       :style="{ width: getProgress }"
     >
