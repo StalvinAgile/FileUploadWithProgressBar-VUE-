@@ -5,7 +5,7 @@
       role="progressbar"
       :style="{ width: getProgress }"
     >
-      {{ progress < 100 ? getProgress : 'Uploaded Successfully' }}
+      {{ progress == 100 ? 'Uploaded Successfully' : getProgress  }}
     </div>
   </div>
 </template>
