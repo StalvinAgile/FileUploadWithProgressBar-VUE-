@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="input-group">
-      <input type="text" :value="files.name" class="form-control" placeholder="Choose your file" />
+      <input @click="showFilePicker" type="text" :value="files.name" class="form-control" placeholder="Choose your file" />
       <span class="input-group-btn btn-border">
         <button class="btn btn-default" type="button" @click="showFilePicker">
           <v-icon>mdi-attachment</v-icon>

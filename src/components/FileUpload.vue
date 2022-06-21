@@ -78,7 +78,7 @@ export default {
           },
         })
         .then((res) => {
-          console.log("upload completed");
+          console.log('response ->',res);
           setTimeout(() => {
             this.isUploading = false;
             this.progress = 0;
@@ -89,7 +89,6 @@ export default {
           this.isUploading = false;
           this.progress = 0;
           this.disableBtn = false;
-          console.log("upload failed");
         });
     },
     setFiles(files) {
