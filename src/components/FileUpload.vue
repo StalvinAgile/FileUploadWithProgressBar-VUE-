@@ -68,6 +68,7 @@ export default {
           }, 1500);
         })
         .catch((err) => {
+          console.log(err);
           this.isUploading = false;
           this.progress = 0;
           this.disableBtn = false;
