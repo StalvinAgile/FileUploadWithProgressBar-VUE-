@@ -1,6 +1,5 @@
 <template>
   <v-app>
-    
       <v-card class="pt-3 pb-1 px-2 mt-1">
         <form @submit.prevent="handleSubmit">
           <div class="form-group">
@@ -28,7 +27,6 @@
           </div>
         </form>
       </v-card>
-
   </v-app>
 </template>
 
@@ -37,6 +35,14 @@ import FileInput from "./FileInput.vue";
 import ProgressBar from "./ProgressBar.vue";
 import axios from "axios";
 export default {
+  props:
+  {
+    folderName:{
+          type:String,
+          default:""
+      },
+  },
+   
   components: { FileInput, ProgressBar },
   data: () => ({
     files: "",
@@ -51,6 +57,7 @@ export default {
       this.isUploading = true;
       let formData = new FormData();
       formData.append("file_name", this.files);
+      formData.append("folder_name", this.folderName);
       axios
         .post(process.env.VUE_APP_API_URL_ADMIN + "store-image", formData, {
           onUploadProgress: (e) => {

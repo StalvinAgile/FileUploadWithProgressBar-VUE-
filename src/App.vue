@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <FileUpload />
+    <FileUpload :folderName="'Excel'"/>
   </div>
 </template>
 
