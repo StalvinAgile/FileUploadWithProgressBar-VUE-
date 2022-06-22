@@ -1,5 +1,7 @@
 <template>
   <v-app>
+    
+      <!-- <a class="ml-2 mt-2"  :href="env_path+filepath">Download</a> -->
       <v-card class="pt-3 pb-1 px-2 mt-1">
         <form @submit.prevent="handleSubmit">
           <div class="form-group">
@@ -45,6 +47,8 @@ export default {
    
   components: { FileInput, ProgressBar },
   data: () => ({
+    filepath:"",
+    env_path:process.env.VUE_APP_FILE_ADMIN,
     files: "",
     disableBtn: false,
     progress: 0,
@@ -67,7 +71,7 @@ export default {
           },
         })
         .then((res) => {
-          console.log("response ->", res);
+          console.log("response ->", res.data);
           setTimeout(() => {
             this.isUploading = false;
             this.progress = 0;
