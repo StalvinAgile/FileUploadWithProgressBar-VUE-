@@ -12,6 +12,7 @@
                 <a v-on="on">
                   <v-btn
                     color="success"
+                    small
                     type="submit"
                     :disabled="!files || disableBtn"
                   >
