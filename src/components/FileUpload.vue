@@ -1,12 +1,33 @@
 <template>
   <v-app>
-
     <v-card class="pt-3 pb-1 px-2 mt-1">
       <form @submit.prevent="handleSubmit">
         <div class="form-group">
           <FileInput v-on:file-change="setFiles"> </FileInput>
         </div>
         <div class="form-group mt-2 d-flex justify-content-end">
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on }">
+              <a v-on="on">
+                <v-btn
+                  v-if="filepath"
+                  class="mr-2"
+                  small
+                  type="submit"
+                  :disabled="!files || disableBtn"
+                >
+                  <a
+                    class="text-decoration-none"
+                    target="_blank"
+                    :href="env_path + filepath"
+                  >
+                    Download
+                  </a>
+                </v-btn>
+              </a>
+            </template>
+            <span>Download</span>
+          </v-tooltip>
           <v-tooltip bottom>
             <template v-slot:activator="{ on }">
               <a v-on="on">
@@ -20,15 +41,21 @@
                 </v-btn>
               </a>
             </template>
-            <span>Upload File</span>
+            <span>Upload</span>
           </v-tooltip>
         </div>
         <div class="mt-3">
           <ProgressBar :progress="progress" v-if="isUploading"></ProgressBar>
         </div>
       </form>
-          <a target="_blank" v-if="filepath" class="ml-2 mt-2" :href="env_path + filepath">Download</a>
-    <!-- <img v-if="filepath" :src='env_path + filepath' alt="img" width="200" class="image-preview"> -->
+      <!-- <a
+          target="_blank"
+          v-if="filepath"
+          class="ml-2 mt-2"
+          :href="env_path + filepath"
+          >Download</a
+        > -->
+      <!-- <img v-if="filepath" :src='env_path + filepath' alt="img" width="200" class="image-preview"> -->
     </v-card>
   </v-app>
 </template>
@@ -96,7 +123,7 @@ export default {
 </script>
 
 <style scoped>
-.image-preview{
+.image-preview {
   border: 2px double black;
   padding: 2px;
 }

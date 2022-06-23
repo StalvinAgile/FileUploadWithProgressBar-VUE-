@@ -1,20 +1,24 @@
 <template>
-  <div id="app">
-    <FileUpload :folderName="'Excel'"/>
+  <div id="app container">
+    <div class="file-upload m-5">
+      <FileUpload :folderName="'Excel'" />
+    </div>
   </div>
 </template>
 
 <script>
-import FileUpload from './components/FileUpload.vue'
+import FileUpload from "./components/FileUpload.vue";
 
 export default {
-  name: 'app',
+  name: "app",
   components: {
-    FileUpload
-  }
-}
+    FileUpload,
+  },
+};
 </script>
 
-<style>
-
+<style scoped>
+.file-upload{
+  width: fit-content;
+}
 </style>
