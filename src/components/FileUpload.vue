@@ -1,7 +1,7 @@
 <template>
   <v-app>
     
-      <!-- <a class="ml-2 mt-2"  :href="env_path+filepath">Download</a> -->
+      <a class="ml-2 mt-2"  :href="env_path+filepath">Download</a>
       <v-card class="pt-3 pb-1 px-2 mt-1">
         <form @submit.prevent="handleSubmit">
           <div class="form-group">
@@ -72,6 +72,7 @@ export default {
         })
         .then((res) => {
           console.log("response ->", res.data);
+          this.filepath = res.data.filepath.file_name;
           setTimeout(() => {
             this.isUploading = false;
             this.progress = 0;
