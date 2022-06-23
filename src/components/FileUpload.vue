@@ -1,34 +1,35 @@
 <template>
   <v-app>
-    
-      <a class="ml-2 mt-2"  :href="env_path+filepath">Download</a>
-      <v-card class="pt-3 pb-1 px-2 mt-1">
-        <form @submit.prevent="handleSubmit">
-          <div class="form-group">
-            <FileInput v-on:file-change="setFiles"> </FileInput>
-          </div>
-          <div class="form-group mt-2 d-flex justify-content-end">
-            <v-tooltip bottom>
-              <template v-slot:activator="{ on }">
-                <a v-on="on">
-                  <v-btn
-                    color="success"
-                    small
-                    type="submit"
-                    :disabled="!files || disableBtn"
-                  >
-                    Upload
-                  </v-btn>
-                </a>
-              </template>
-              <span>Upload File</span>
-            </v-tooltip>
-          </div>
-          <div class="mt-3">
-            <ProgressBar :progress="progress" v-if="isUploading"></ProgressBar>
-          </div>
-        </form>
-      </v-card>
+
+    <v-card class="pt-3 pb-1 px-2 mt-1">
+      <form @submit.prevent="handleSubmit">
+        <div class="form-group">
+          <FileInput v-on:file-change="setFiles"> </FileInput>
+        </div>
+        <div class="form-group mt-2 d-flex justify-content-end">
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on }">
+              <a v-on="on">
+                <v-btn
+                  color="success"
+                  small
+                  type="submit"
+                  :disabled="!files || disableBtn"
+                >
+                  Upload
+                </v-btn>
+              </a>
+            </template>
+            <span>Upload File</span>
+          </v-tooltip>
+        </div>
+        <div class="mt-3">
+          <ProgressBar :progress="progress" v-if="isUploading"></ProgressBar>
+        </div>
+      </form>
+          <a target="_blank" v-if="filepath" class="ml-2 mt-2" :href="env_path + filepath">Download</a>
+    <!-- <img v-if="filepath" :src='env_path + filepath' alt="img" width="200" class="image-preview"> -->
+    </v-card>
   </v-app>
 </template>
 
@@ -37,18 +38,17 @@ import FileInput from "./FileInput.vue";
 import ProgressBar from "./ProgressBar.vue";
 import axios from "axios";
 export default {
-  props:
-  {
-    folderName:{
-          type:String,
-          default:""
-      },
+  props: {
+    folderName: {
+      type: String,
+      default: "",
+    },
   },
-   
+
   components: { FileInput, ProgressBar },
   data: () => ({
-    filepath:"",
-    env_path:process.env.VUE_APP_FILE_ADMIN,
+    filepath: "",
+    env_path: process.env.VUE_APP_FILE_ADMIN,
     files: "",
     disableBtn: false,
     progress: 0,
@@ -71,7 +71,7 @@ export default {
           },
         })
         .then((res) => {
-          console.log("response ->", res.data);
+          // console.log("response ->", res.data);
           this.filepath = res.data.filepath.file_name;
           setTimeout(() => {
             this.isUploading = false;
@@ -95,5 +95,9 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.image-preview{
+  border: 2px double black;
+  padding: 2px;
+}
 </style>
